@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Guadalajara - imagen de demostración">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B3D2E"/>
+      <stop offset="100%" stop-color="#082C21"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1020" cy="94.5" r="220.5" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="567" r="176.4" fill="#ffffff" opacity="0.08"/>
+  <text x="600" y="305" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="47" fill="#F7F5F0">NOVA Detailing</text>
+  <text x="600" y="355" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#F7F5F0" opacity="0.85">Imagen de demostración</text>
+</svg>

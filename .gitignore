@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.env
+*.local
+server/data/*.sqlite
+server/data/*.sqlite-journal
+server/data/*.sqlite-wal
+server/data/*.sqlite-shm
+server/uploads/*
+!server/uploads/.gitkeep
+*.log
+.DS_Store
