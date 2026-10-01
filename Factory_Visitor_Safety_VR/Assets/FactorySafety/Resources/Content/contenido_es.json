@@ -1,0 +1,359 @@
+{
+  "version": "1.0.0",
+  "descargo": "Demostración educativa adaptable a los procedimientos de cada planta. No certifica capacitación ni cumplimiento normativo. Fábrica, personas y marcas ficticias.",
+  "induccion": [
+    "Bienvenida/o a Ensambles Demo, una fábrica ficticia de ensamble electrónico.\n\nComo VISITANTE tu papel es observar. No operas maquinaria, no realizas mantenimiento y no manipulas materiales ni piezas.",
+    "Antes de entrar a la planta:\n\n1. Revisa el tablero de reglas para visitantes.\n2. Pide orientación al guía.\n3. Colócate el EPP de visitante: chaleco de alta visibilidad, lentes de seguridad y protección auditiva.",
+    "Durante el recorrido:\n\n- Camina solo por los pasillos peatonales verdes.\n- En el cruce de montacargas espera la luz verde y usa el paso peatonal.\n- No cruces franjas amarillas ni zonas restringidas.\n- Si ves algo fuera de lugar (derrames, objetos junto a máquinas, rutas bloqueadas o algo que no coincide con una instrucción), NO lo corrijas: avisa al guía.",
+    "Si suena una alarma, sigue al guía con calma por la ruta de evacuación hasta el punto de reunión. No regreses por objetos.\n\nPreguntar y reportar siempre es una decisión adecuada. Puedes hablar con el guía en cualquier momento (apunta al guía e interactúa)."
+  ],
+  "reglasVisitantes": [
+    "1. Completa la inducción y pide orientación al guía antes de ingresar a la planta.",
+    "2. Usa el EPP de visitante: chaleco de alta visibilidad, lentes de seguridad y protección auditiva.",
+    "3. Camina solo por pasillos peatonales (verdes). En cruces de montacargas espera la luz verde.",
+    "4. No cruces franjas amarillas ni entres a zonas restringidas o de maquinaria.",
+    "5. No toques máquinas, resguardos, piezas, materiales ni sustancias.",
+    "6. Si ves una condición insegura o algo que no parece correcto, avisa al guía. No intentes corregirlo.",
+    "7. En una alarma, sigue al guía hasta el punto de reunión sin regresar por objetos.",
+    "",
+    "Nota: estas reglas son un ejemplo para una fábrica ficticia. Cada planta debe adaptarlas a sus propios procedimientos."
+  ],
+  "eppRequerido": [
+    "Chaleco de alta visibilidad",
+    "Lentes de seguridad",
+    "Protección auditiva"
+  ],
+  "escenarios": [
+    {
+      "id": "A",
+      "titulo": "Acceso sin inducción o protección requerida",
+      "area": "Recepción y acceso",
+      "categoria": "SEGURIDAD",
+      "objetivoConCapacitacion": "Revisa el tablero de reglas, pide orientación al guía y colócate el EPP (chaleco, lentes y protección auditiva) antes de pasar por la puerta de acceso.",
+      "objetivoSinInduccion": "Entra a la planta.",
+      "guiaConCapacitacion": [
+        "Hola, soy tu guía. Antes de entrar necesitamos tres cosas: revisar el tablero de reglas a tu izquierda, que me pidas orientación y que te coloques el EPP de la mesa de acceso.",
+        "El acceso solo se abre cuando cumples los requisitos. Si tienes dudas, pregúntame."
+      ],
+      "guiaSinInduccion": [
+        "Hola, bienvenido. La planta está por allá, pasa cuando quieras."
+      ],
+      "ayudaGuia": [
+        "Claro. Como visitante solo observas: no operas equipos ni tocas materiales.",
+        "Camina por los pasillos verdes, espera la luz verde en el cruce de montacargas y no entres a zonas marcadas en amarillo.",
+        "Si ves algo raro, avísame. Antes de pasar, revisa las reglas y toma el chaleco, los lentes y la protección auditiva de la mesa."
+      ],
+      "intervencionGuia": [
+        "¡Espera un momento! Todavía no puedes entrar.",
+        "Antes de ingresar debes conocer las reglas, recibir orientación y usar el EPP. Ven, te ayudo."
+      ],
+      "resolucionGuia": [
+        "Perfecto, ya tienes lo necesario. Vamos al pasillo peatonal; adelante hay un cruce de montacargas."
+      ],
+      "pregunta": "",
+      "opciones": [],
+      "exito": {
+        "titulo": "Ingreso con requisitos cumplidos",
+        "mensaje": "Revisaste las reglas, pediste orientación y te colocaste el EPP antes de entrar. Así conoces los riesgos del recorrido y estás protegido frente a ruido, partículas y tránsito de equipos."
+      },
+      "errores": [
+        {
+          "id": "acceso_sin_requisitos",
+          "titulo": "Intento de acceso sin inducción o sin EPP",
+          "queOcurrio": "Llegaste a la puerta de acceso sin cumplir todos los requisitos de ingreso. La puerta permaneció cerrada y el guía detuvo el acceso.",
+          "informacionFaltante": "Qué reglas aplican a visitantes, qué EPP es obligatorio y que el ingreso requiere orientación previa del guía.",
+          "consecuencia": "Sin inducción no sabrías cómo comportarte ante montacargas, máquinas o una alarma; sin EPP quedarías expuesto a ruido, partículas y poca visibilidad frente a equipos en movimiento.",
+          "decisionAdecuada": "Detenerte antes de la puerta, revisar el tablero de reglas, pedir orientación al guía y colocarte el chaleco, los lentes y la protección auditiva.",
+          "factorOrganizacional": "Inducción incompleta: si la organización no explica los requisitos ni los muestra en el punto de acceso, es probable que un visitante los omita."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "titulo": "Cruce con montacargas",
+      "area": "Pasillos peatonales y cruce de montacargas",
+      "categoria": "SEGURIDAD",
+      "objetivoConCapacitacion": "Llega al pasillo norte usando el cruce peatonal (franjas blancas) y cruza solo cuando el semáforo peatonal indique CRUCE PERMITIDO (verde).",
+      "objetivoSinInduccion": "Continúa hacia el pasillo del otro lado.",
+      "guiaConCapacitacion": [
+        "Aquí cruza la ruta del montacargas, marcada en amarillo. Solo se cruza por el paso peatonal con franjas blancas.",
+        "Espera a que el semáforo muestre CRUCE PERMITIDO en verde. Mientras alguien esté en el cruce, el montacargas espera."
+      ],
+      "guiaSinInduccion": [
+        "Seguimos hacia el otro lado del pasillo."
+      ],
+      "ayudaGuia": [
+        "Usa el paso peatonal con franjas blancas frente a ti.",
+        "Mira el semáforo peatonal: cruza solo con CRUCE PERMITIDO (verde). Si dice ESPERE (rojo), quédate detrás de la línea amarilla."
+      ],
+      "intervencionGuia": [
+        "¡Alto! El montacargas tuvo que detenerse. Por poco hay un atropello.",
+        "Quédate quieto; el operador te ve y esperará. Vamos a revisar qué pasó."
+      ],
+      "resolucionGuia": [
+        "Muy bien. Esperaste la indicación y usaste el cruce. Te sigo en cuanto el semáforo me lo permita."
+      ],
+      "pregunta": "",
+      "opciones": [],
+      "exito": {
+        "titulo": "Cruce seguro",
+        "mensaje": "Esperaste la indicación segura y cruzaste por el paso peatonal. El montacargas permaneció detenido mientras estabas en el cruce."
+      },
+      "errores": [
+        {
+          "id": "invadir_ruta",
+          "titulo": "Invasión de la ruta del montacargas",
+          "queOcurrio": "Entraste a la ruta del montacargas fuera del paso peatonal. El montacargas frenó, sonó el claxon y se representó un casi accidente.",
+          "informacionFaltante": "Que la ruta amarilla es exclusiva del montacargas y que solo se cruza por el paso peatonal. En este tramo además falta una sección de barandal que podría parecer un paso.",
+          "consecuencia": "Un montacargas con carga necesita distancia para frenar y el operador puede no ver a una persona por la carga o el mástil. Podría ocurrir un atropello o un golpe.",
+          "decisionAdecuada": "Seguir el pasillo peatonal hasta el cruce marcado, detenerse detrás de la línea amarilla y cruzar solo con la luz verde.",
+          "factorOrganizacional": "Señalización insuficiente: un barandal incompleto y la falta de indicaciones previas facilitan tomar un atajo por la ruta del montacargas."
+        },
+        {
+          "id": "cruce_sin_senal",
+          "titulo": "Cruce sin esperar la indicación segura",
+          "queOcurrio": "Entraste al paso peatonal mientras el semáforo indicaba ESPERE (rojo). El montacargas frenó y se representó un casi accidente.",
+          "informacionFaltante": "Que el semáforo peatonal coordina el paso: en rojo el montacargas puede estar en movimiento o por arrancar.",
+          "consecuencia": "Cruzar en rojo te pone en la trayectoria del montacargas cuando el operador no espera peatones. Podría ocurrir un atropello.",
+          "decisionAdecuada": "Esperar detrás de la línea amarilla hasta ver CRUCE PERMITIDO (verde) y cruzar sin detenerte en la ruta.",
+          "factorOrganizacional": "Falta de supervisión y orientación previa: nadie indicó al visitante cómo funciona el semáforo antes del punto crítico."
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "titulo": "Derrame en un pasillo",
+      "area": "Pasillo hacia producción",
+      "categoria": "SEGURIDAD",
+      "objetivoConCapacitacion": "Observa el piso del pasillo. Si encuentras un derrame, mantente alejado y repórtalo al guía (apunta a la mancha e interactúa).",
+      "objetivoSinInduccion": "Avanza hacia el área de producción.",
+      "guiaConCapacitacion": [
+        "Revisa el piso antes de avanzar. Si ves un líquido derramado, no lo pises ni intentes limpiarlo: puede ser una sustancia desconocida.",
+        "Avísame y yo lo reporto a mantenimiento."
+      ],
+      "guiaSinInduccion": [
+        "Vamos hacia producción, es por aquí."
+      ],
+      "ayudaGuia": [
+        "Hay una mancha en el piso del pasillo. Mantén distancia, no la toques y repórtamela: apunta a la mancha e interactúa."
+      ],
+      "intervencionGuia": [],
+      "resolucionGuia": [
+        "Gracias por avisar. No sabemos qué sustancia es, así que nadie debe tocarla.",
+        "Coloco conos y aviso a mantenimiento para que la identifiquen y la limpien con el equipo adecuado."
+      ],
+      "pregunta": "Hay un líquido brillante en el piso, junto a un envase sin etiqueta. ¿Qué haces?",
+      "opciones": [
+        { "id": "reportar", "texto": "Mantenerme alejado y avisar al guía" },
+        { "id": "limpiar", "texto": "Secarlo con papel o con el pie para que nadie resbale" },
+        { "id": "ignorar", "texto": "Rodearlo y seguir sin decir nada" }
+      ],
+      "exito": {
+        "titulo": "Derrame reportado",
+        "mensaje": "Te mantuviste alejado y reportaste el derrame. El guía acordonó el área y avisó a mantenimiento, que identificará la sustancia antes de limpiarla."
+      },
+      "errores": [
+        {
+          "id": "limpiar",
+          "titulo": "Intento de limpiar una sustancia desconocida",
+          "queOcurrio": "Decidiste limpiar el líquido por tu cuenta. Apareció la advertencia: sustancia no identificada.",
+          "informacionFaltante": "Que un visitante no debe manipular sustancias y que un derrame se reporta para que personal capacitado lo identifique y lo limpie con el equipo adecuado.",
+          "consecuencia": "La sustancia podría ser irritante, corrosiva o resbaladiza. Limpiarla sin saber qué es puede causar contacto con la piel u ojos y extender el derrame.",
+          "decisionAdecuada": "Mantener distancia, avisar al guía y esperar a que se acordone el área.",
+          "factorOrganizacional": "Instrucciones ambiguas: si nadie explica qué hacer ante un derrame, la intención de ayudar puede llevar a una acción insegura."
+        },
+        {
+          "id": "pisar",
+          "titulo": "Paso sobre el derrame",
+          "queOcurrio": "Caminaste sobre la zona del derrame. Las pisadas extendieron la sustancia por el pasillo.",
+          "informacionFaltante": "Que el piso del pasillo debía revisarse y que un líquido en el piso se evita y se reporta.",
+          "consecuencia": "Podrías resbalar y caer, contaminar tu calzado y extender la sustancia hacia otras áreas donde otras personas podrían resbalar.",
+          "decisionAdecuada": "Detenerte, rodear el derrame a distancia y avisar al guía.",
+          "factorOrganizacional": "Falta de supervisión: el derrame no estaba acordonado ni señalizado cuando el visitante llegó."
+        },
+        {
+          "id": "ignorar",
+          "titulo": "Derrame sin reportar",
+          "queOcurrio": "Seguiste de largo sin reportar el derrame. En una representación simbólica, otra persona que llevaba una caja llegó al mismo punto y estuvo a punto de resbalar.",
+          "informacionFaltante": "Que cualquier persona, incluso un visitante, puede y debe reportar una condición insegura.",
+          "consecuencia": "Una persona que no ve el derrame (por ejemplo, porque carga una caja) podría resbalar y caer.",
+          "decisionAdecuada": "Avisar al guía en cuanto viste el derrame, sin tocarlo.",
+          "factorOrganizacional": "Inducción incompleta: si no se explica que los visitantes también reportan, es común pensar que no les corresponde."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "titulo": "Zona de maquinaria restringida",
+      "area": "Producción con maquinaria protegida",
+      "categoria": "SEGURIDAD",
+      "objetivoConCapacitacion": "Observa la prensa protegida desde el pasillo verde. Si algo está fuera de lugar junto a la máquina, avisa al guía y permanece fuera de la franja amarilla.",
+      "objetivoSinInduccion": "Recorre el área de producción.",
+      "guiaConCapacitacion": [
+        "A la izquierda hay una prensa con resguardo fijo. La franja amarilla marca una zona restringida: solo entra personal autorizado.",
+        "Si ves algo fuera de lugar cerca de la máquina, avísame. No cruces la franja ni toques el resguardo."
+      ],
+      "guiaSinInduccion": [
+        "Esa es la prensa, trabaja muy rápido. Sigamos."
+      ],
+      "ayudaGuia": [
+        "Junto a la máquina quedó una caja de piezas, dentro de la zona restringida. Avísame (apunta a la caja e interactúa) y quédate en el pasillo verde."
+      ],
+      "intervencionGuia": [
+        "¡Detente! Al entrar a la zona restringida se activó el paro de seguridad.",
+        "Sal por donde entraste y quédate en el pasillo verde."
+      ],
+      "resolucionGuia": [
+        "Gracias. Llamo al técnico autorizado: él detendrá la máquina con el procedimiento correcto y retirará la caja."
+      ],
+      "pregunta": "Una caja de piezas quedó junto a la prensa, dentro de la zona marcada en amarillo. ¿Qué haces?",
+      "opciones": [
+        { "id": "reportar", "texto": "Avisar al guía y quedarme fuera de la franja" },
+        { "id": "entrar", "texto": "Entrar rápido a recoger la caja" },
+        { "id": "ignorar", "texto": "Ignorarla y seguir el recorrido" }
+      ],
+      "exito": {
+        "titulo": "Aviso correcto y distancia segura",
+        "mensaje": "Avisaste al guía y te quedaste fuera de la zona restringida. Un técnico autorizado detuvo la máquina con el procedimiento correcto, retiró la caja y la producción continuó."
+      },
+      "errores": [
+        {
+          "id": "entrar_zona",
+          "titulo": "Ingreso a zona restringida de maquinaria",
+          "queOcurrio": "Entraste a la zona restringida de la máquina. Se activó un paro de seguridad y la producción se detuvo.",
+          "informacionFaltante": "Que la franja amarilla delimita una zona solo para personal autorizado y que los objetos cerca de una máquina los retira ese personal.",
+          "consecuencia": "Cerca de una máquina en movimiento existen riesgos de atrapamiento o golpes. Además, un paro inesperado interrumpe la producción.",
+          "decisionAdecuada": "Quedarte en el pasillo verde y avisar al guía para que llame a personal autorizado.",
+          "factorOrganizacional": "Señalización e instrucciones: si la zona y su significado no se explican antes, un visitante puede creer que ayudar es recoger el objeto."
+        },
+        {
+          "id": "ignorar",
+          "titulo": "Objeto sin reportar junto a la máquina",
+          "queOcurrio": "No avisaste del objeto. La caja quedó cerca del mecanismo y la máquina tuvo un paro no programado.",
+          "informacionFaltante": "Que reportar algo fuera de lugar junto a una máquina ayuda a prevenir daños, atascos y riesgos para quien opera.",
+          "consecuencia": "Un objeto cerca del mecanismo puede atascarse, dañar el equipo o salir proyectado, y obliga a detener la producción.",
+          "decisionAdecuada": "Avisar al guía en cuanto viste el objeto, sin entrar a la zona.",
+          "factorOrganizacional": "Falta de supervisión: el objeto no fue detectado por la operación y nadie explicó al visitante que podía reportarlo."
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "titulo": "Capacitación deficiente en ensamble",
+      "area": "Ensamble y control de calidad",
+      "categoria": "CALIDAD",
+      "objetivoConCapacitacion": "Observa la estación de ensamble. Si notas que la instrucción no coincide con lo que se hace, coméntalo al guía. No toques piezas ni la línea.",
+      "objetivoSinInduccion": "Observa el área de ensamble.",
+      "guiaConCapacitacion": [
+        "Aquí un operador nuevo ensambla tarjetas. Compara la hoja de instrucción con lo que hace.",
+        "Si algo no coincide, dímelo. Esto es un tema de CALIDAD del producto, no de riesgo de lesión, y tampoco se corrige tocando las piezas."
+      ],
+      "guiaSinInduccion": [
+        "Aquí se ensamblan las tarjetas electrónicas."
+      ],
+      "ayudaGuia": [
+        "Mira la hoja de instrucción: dice 'Instalar conector en J1', pero no indica cuál. Hay dos contenedores parecidos, C-12 y C-21.",
+        "Si te parece que algo no está claro, coméntamelo (apunta a la hoja de instrucción e interactúa)."
+      ],
+      "intervencionGuia": [],
+      "resolucionGuia": [
+        "Buena observación. Se lo comento a la supervisora para que verifique la instrucción.",
+        "Detendrán la línea un momento; las piezas ya hechas pasarán a retrabajo."
+      ],
+      "pregunta": "La hoja dice 'Instalar conector en J1' sin indicar cuál. El operador toma el conector naranja (C-21) y control de calidad empieza a rechazar tarjetas. ¿Qué haces?",
+      "opciones": [
+        { "id": "reportar", "texto": "Comentar al guía que la instrucción no indica qué conector usar" },
+        { "id": "corregir", "texto": "Tomar una tarjeta y cambiar yo mismo el conector" },
+        { "id": "ignorar", "texto": "No decir nada; no es asunto del visitante" }
+      ],
+      "exito": {
+        "titulo": "Problema de calidad comunicado",
+        "mensaje": "Comentaste la diferencia sin tocar la línea. La supervisora aclaró la instrucción (conector C-12, azul). Hubo una interrupción breve y las tarjetas ya hechas pasaron a retrabajo, pero se evitó seguir produciendo piezas rechazadas.\n\nRecuerda: esto fue un problema de CALIDAD, no un riesgo de lesión."
+      },
+      "errores": [
+        {
+          "id": "manipular_piezas",
+          "titulo": "Manipulación de piezas por un visitante",
+          "queOcurrio": "Intentaste corregir la tarjeta por tu cuenta. La línea se detuvo porque una persona no autorizada intervino en la estación.",
+          "informacionFaltante": "Que los visitantes no manipulan piezas ni intervienen en la línea, y que los problemas de calidad se comunican al guía o a la supervisión.",
+          "consecuencia": "Problema de CALIDAD: podrías dañar la pieza o mezclar componentes, provocar más retrabajo e interrumpir la producción. No es un riesgo de lesión en este caso.",
+          "decisionAdecuada": "Comentar al guía la diferencia entre la instrucción y lo observado, sin tocar nada.",
+          "factorOrganizacional": "Instrucción ambigua y capacitación deficiente del operador: la causa principal no es el visitante ni el operador, sino una instrucción que no identifica la pieza."
+        },
+        {
+          "id": "no_advertir",
+          "titulo": "Diferencia de calidad no comunicada",
+          "queOcurrio": "La diferencia no se comunicó. Control de calidad rechazó varias tarjetas por conector incorrecto, se acumuló retrabajo y la línea se detuvo (interrupción simulada).",
+          "informacionFaltante": "Que cualquier persona puede comentar cuando algo no coincide con la instrucción, y que la hoja debía indicar el conector C-12 (azul).",
+          "consecuencia": "Problema de CALIDAD: piezas rechazadas, retrabajo, desperdicio de tiempo y materiales e interrupción de la producción. No es un riesgo de lesión en este caso.",
+          "decisionAdecuada": "Comentar al guía que la instrucción no indica qué conector usar.",
+          "factorOrganizacional": "Capacitación deficiente e instrucción incompleta: el operador nuevo no recibió una instrucción clara ni supervisión al iniciar."
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "titulo": "Ruta de evacuación obstruida",
+      "area": "Almacén, salida de emergencia y punto de reunión",
+      "categoria": "SEGURIDAD",
+      "objetivoConCapacitacion": "Identifica la ruta de evacuación (flechas verdes) y la salida de emergencia. Si algo la bloquea, repórtalo al guía. Si suena la alarma, sigue al guía hasta el punto de reunión.",
+      "objetivoSinInduccion": "Recorre el almacén.",
+      "guiaConCapacitacion": [
+        "Este es el almacén. Las flechas verdes marcan la ruta de evacuación hacia la salida de emergencia del este.",
+        "Si algo bloquea la ruta, repórtalo. Si suena una alarma, sígueme con calma hasta el punto de reunión y no regreses por objetos."
+      ],
+      "guiaSinInduccion": [
+        "Este es el almacén. Al terminar saldremos por allá."
+      ],
+      "ayudaGuia": [
+        "Sigue las flechas verdes hacia la salida de emergencia. Si ves algo bloqueando el paso, repórtamelo (apunta a las cajas e interactúa)."
+      ],
+      "intervencionGuia": [
+        "¡La ruta de evacuación está bloqueada por cajas! No podemos pasar por aquí.",
+        "Vamos por la salida norte; es más larga. Sígueme con calma."
+      ],
+      "resolucionGuia": [
+        "Gracias por reportarlo. Pido al almacenista que despeje la ruta; los visitantes no movemos carga."
+      ],
+      "pregunta": "Varias cajas bloquean el pasillo que lleva a la salida de emergencia. ¿Qué haces?",
+      "opciones": [
+        { "id": "reportar", "texto": "Reportar al guía que la ruta de evacuación está bloqueada" },
+        { "id": "mover", "texto": "Mover yo mismo las cajas para despejar el paso" },
+        { "id": "ignorar", "texto": "No decir nada; se puede salir por otro lado" }
+      ],
+      "exito": {
+        "titulo": "Evacuación completada",
+        "mensaje": "Seguiste al guía hasta el punto de reunión durante la alarma de práctica."
+      },
+      "errores": [
+        {
+          "id": "mover_cajas",
+          "titulo": "Manipulación de carga por un visitante",
+          "queOcurrio": "Intentaste mover las cajas por tu cuenta. Una caja de la pila quedó inestable.",
+          "informacionFaltante": "Que los visitantes no manipulan carga y que una obstrucción se reporta para que el personal de almacén la retire de forma segura.",
+          "consecuencia": "Una carga inestable puede caer y golpear a alguien; mover peso sin técnica puede causar lesiones. Además, las cajas podrían quedar en otro lugar inadecuado.",
+          "decisionAdecuada": "Reportar la obstrucción al guía y mantenerte alejado de la pila.",
+          "factorOrganizacional": "Falta de supervisión del orden en el almacén: la ruta se bloqueó durante la operación y no se detectó a tiempo."
+        },
+        {
+          "id": "ruta_no_reportada",
+          "titulo": "Ruta de evacuación obstruida sin reportar",
+          "queOcurrio": "La obstrucción no se reportó. Cuando sonó la alarma de práctica, la ruta principal estaba bloqueada y hubo que usar una salida alternativa más larga.",
+          "informacionFaltante": "Dónde está la ruta de evacuación y que una ruta bloqueada debe reportarse de inmediato.",
+          "consecuencia": "En una emergencia real, una ruta bloqueada retrasa la salida, genera confusión y puede provocar aglomeraciones.",
+          "decisionAdecuada": "Reportar la obstrucción en cuanto la viste, para que se despejara antes de cualquier emergencia.",
+          "factorOrganizacional": "Señalización e inspección insuficientes: la ruta no se revisó y el visitante no sabía que podía reportar."
+        },
+        {
+          "id": "regresar",
+          "titulo": "Regreso durante la alarma",
+          "queOcurrio": "Durante la alarma regresaste hacia el área de ensamble en lugar de seguir al guía.",
+          "informacionFaltante": "Que durante una alarma se sigue al guía por la ruta de evacuación hasta el punto de reunión, sin regresar por objetos ni separarse.",
+          "consecuencia": "Separarte del guía o regresar dificulta el conteo de personas en el punto de reunión y puede exponerte al peligro que originó la alarma.",
+          "decisionAdecuada": "Seguir al guía con calma hasta el punto de reunión y esperar instrucciones.",
+          "factorOrganizacional": "Inducción incompleta: no se explicó al visitante qué hacer al escuchar una alarma."
+        }
+      ]
+    }
+  ]
+}
