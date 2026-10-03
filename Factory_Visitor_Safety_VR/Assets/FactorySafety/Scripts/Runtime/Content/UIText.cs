@@ -8,7 +8,7 @@ namespace FactoryVisitorSafety
     {
         public const string AppTitle = "Factory Visitor Safety VR";
         public const string AppSubtitle = "Recorrido educativo para visitantes en una fábrica ficticia de ensamble electrónico";
-        public const string Version = "Versión 1.0.0";
+        public const string Version = "Versión 1.0.0 · preparada para Unity 6000.1.0f1";
 
         public const string ModeHeader = "Modo educativo";
         public const string PlatformHeader = "Forma de uso";

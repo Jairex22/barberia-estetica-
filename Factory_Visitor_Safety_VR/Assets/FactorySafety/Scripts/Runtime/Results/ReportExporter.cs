@@ -99,6 +99,7 @@ namespace FactoryVisitorSafety
             sb.AppendLine("seccion,campo,valor");
             Row(sb, "resumen", "aplicacion", r.aplicacion);
             Row(sb, "resumen", "version", r.versionAplicacion);
+            Row(sb, "resumen", "version_unity", r.versionUnity);
             Row(sb, "resumen", "id_sesion", r.idSesion);
             Row(sb, "resumen", "modo_visita", r.modoVisita);
             Row(sb, "resumen", "plataforma", r.plataforma);

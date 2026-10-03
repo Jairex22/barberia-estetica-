@@ -1,4 +1,4 @@
-# Factory Visitor Safety VR — v1.0.0
+# Factory Visitor Safety VR — v1.0.0 para Unity 6000.1.0f1
 
 Recorrido educativo en primera persona por una **fábrica ficticia de ensamble electrónico** ("Ensambles Demo"). El usuario participa como **VISITANTE** acompañado por un guía virtual y enfrenta seis situaciones donde una capacitación deficiente puede provocar accidentes, incidentes, errores de calidad o interrupciones de producción.
 
@@ -6,38 +6,43 @@ Recorrido educativo en primera persona por una **fábrica ficticia de ensamble e
 
 ---
 
-## 1. Versiones exactas
+## 1. Versión del editor y paquetes
 
-| Elemento | Versión |
+Proyecto preparado específicamente para **Unity 6000.1.0f1** (Unity 6.1). `ProjectSettings/ProjectVersion.txt` contiene `m_EditorVersion: 6000.1.0f1`. No hace falta actualizar ni cambiar de editor.
+
+| Elemento | Versión fijada en `Packages/manifest.json` |
 |---|---|
-| **Editor de Unity** | **Unity 6000.0.84f1** (Unity 6.0 LTS) |
-| Universal Render Pipeline | `com.unity.render-pipelines.universal` **17.0.4** |
-| Input System | `com.unity.inputsystem` **1.18.0** |
-| XR Interaction Toolkit | `com.unity.xr.interaction.toolkit` **3.0.11** |
-| OpenXR Plugin | `com.unity.xr.openxr` **1.16.1** |
-| XR Plug-in Management | `com.unity.xr.management` **4.5.3** |
+| **Editor de Unity** | **6000.1.0f1** |
+| Universal Render Pipeline | `com.unity.render-pipelines.universal` **17.1.0** |
+| Input System | `com.unity.inputsystem` **1.14.0** |
+| XR Interaction Toolkit | `com.unity.xr.interaction.toolkit` **3.1.1** |
+| OpenXR Plugin | `com.unity.xr.openxr` **1.14.2** |
+| XR Plug-in Management | `com.unity.xr.management` **4.5.1** |
 | XR Core Utilities | `com.unity.xr.core-utils` **2.5.2** |
 | Unity UI (uGUI) | `com.unity.ugui` **2.0.0** |
 
-Las versiones están fijadas en `Packages/manifest.json`. Cómo se eligieron:
+Cómo se eligieron (detalle en `VALIDATION.md`):
 
-- La documentación oficial de Unity no fue accesible desde el entorno donde se creó el proyecto (bloqueo de red). Las versiones se confirmaron con búsquedas web que citan el manual de Unity 6.0 y las notas de versión, y con el `package.json` de cada paquete publicado en espejos públicos de GitHub (`needle-mirror`): XRI 3.0.11 declara `"unity": "6000.0"`; OpenXR 1.16.1, Input System 1.18.0, XR Management 4.5.3 y XR Core Utils 2.5.2 declaran versiones mínimas anteriores a Unity 6.
-- URP 17.0.4 es la versión integrada en Unity 6.0 desde 6000.0.40f1 (confirmado en el `package.json` de la rama `6000.0/staging` del repositorio oficial *Unity-Technologies/Graphics*). URP es un paquete "core": si tu editor 6000.0.x trae otra versión 17.0.x, Unity la ajusta solo.
-- **Compatibilidad esperada:** cualquier Unity 6000.0.x a partir de 6000.0.40f1. Solo se indica la 6000.0.84f1 como versión recomendada. **No se probó en Unity** (ver `VALIDATION.md`).
+- **URP 17.1.0** es la línea de URP de Unity 6000.1 (`package.json` de la rama `6000.1/staging` del repositorio oficial *Unity-Technologies/Graphics*: `"version": "17.1.0"`, `"unity": "6000.1"`). URP es un paquete "core" ligado al editor.
+- **Input System 1.14.0**: el manual de Unity 6000.1 lista la serie 1.14 como publicada para 6000.1. La 1.14.0 es la versión de esa serie que ya existía cuando salió 6000.1.0f1 (marzo de 2025).
+- **XR Interaction Toolkit 3.1.1, OpenXR 1.14.2, XR Management 4.5.1 y XR Core Utils 2.5.2**: versiones estables publicadas antes de 6000.1.0f1, cuyo `package.json` declara un mínimo de Unity anterior a 6000.1. Sus dependencias son compatibles entre sí (XRI 3.1.1 requiere Core Utils ≥ 2.4.0 e Input System ≥ 1.8.1; OpenXR 1.14.2 requiere XR Management ≥ 4.4.0, Core Utils ≥ 2.3.0 e Input System ≥ 1.6.3).
+- Todo el código usa una sola versión de XR Interaction Toolkit (3.1.1). No mezcla APIs de XRI 2.x ni de otras versiones 3.x.
+- **No se incluye `Packages/packages-lock.json`.** Ese archivo lo genera Unity al resolver los paquetes y no se pudo ejecutar Unity aquí; no se inventó su contenido. Unity lo creará en la primera apertura.
+- **Pendiente de comprobar:** que Package Manager de 6000.1.0f1 resuelva estas versiones sin avisos. Si Unity sugiere otra versión de URP 17.1.x, acéptala: la decide el editor.
 
 ## 2. Requisitos
 
-- Windows 10/11 de 64 bits, Unity Hub y el editor **6000.0.84f1** con el módulo de compilación para Windows (viene incluido con el editor de Windows).
+- Windows 10/11 de 64 bits, Unity Hub y el editor **6000.1.0f1** con el módulo *Windows Build Support (Mono)* (incluido con el editor de Windows).
 - **Internet solo la primera vez** que se abre el proyecto, para descargar los paquetes. Después funciona sin conexión: no hay backend, cuentas, servicios de pago ni APIs de IA.
 - **VR (opcional):** un visor para PC con un runtime OpenXR activo (por ejemplo, el software del fabricante del visor configurado como runtime OpenXR). **No se ha probado en ningún visor**; consulta "Limitaciones".
 
 ## 3. Desde el ZIP hasta pulsar Play
 
-1. Extrae `Factory_Visitor_Safety_VR_v1.0.0.zip`. Obtendrás la carpeta `Factory_Visitor_Safety_VR` con `Assets`, `Packages`, `ProjectSettings` y esta guía. Usa una ruta corta y sin caracteres raros (por ejemplo, `C:\Proyectos\Factory_Visitor_Safety_VR`).
+1. Extrae `Factory_Visitor_Safety_VR_Unity_6000.1.0f1.zip`. Obtendrás la carpeta `Factory_Visitor_Safety_VR` con `Assets`, `Packages`, `ProjectSettings` y esta guía. Usa una ruta corta y sin caracteres raros (por ejemplo, `C:\Proyectos\Factory_Visitor_Safety_VR`).
 2. Abre **Unity Hub → Add → Add project from disk** y elige esa carpeta.
-3. Abre el proyecto con **Unity 6000.0.84f1**. La primera apertura tarda varios minutos: Unity descarga los paquetes y crea `Library`.
+3. Abre el proyecto con **Unity 6000.1.0f1** (si no lo tienes, instálalo desde Unity Hub → Installs → Install Editor → Archive, versión 6000.1.0f1). La primera apertura tarda varios minutos: Unity descarga los paquetes y crea `Library`.
 4. Si Unity pregunta por el **Input System** ("...enable the new input system backends?"), responde **Yes**. El editor se reinicia.
-5. Cuando el editor termine de cargar aparecerá el diálogo **"La escena del recorrido aún no existe"**. Pulsa **Generar ahora**.
+5. Cuando el editor termine de cargar aparecerá el diálogo **"La escena del recorrido aún no existe"**. Pulsa **Generar ahora**. (El diálogo solo pregunta; nada se genera ni se modifica sin tu confirmación.)
    Si no aparece, usa el menú **Factory Safety → Generar todo (configurar + escena)**.
 6. Si el generador avisa **"Reinicio necesario"** (cambio de *Active Input Handling*), acepta el reinicio y, al volver, ejecuta otra vez **Factory Safety → Generar todo**.
 7. Al terminar verás un resumen. La escena `Assets/FactorySafety/Scenes/FactoryTour.unity` queda abierta y agregada a *Build Settings*.
@@ -180,7 +185,7 @@ Assets/FactorySafety/
 | WASD/ratón no responden o hay errores de `Keyboard.current` | *Active Input Handling* debe ser "Input System Package (New)" o "Both" (Project Settings → Player). Ejecuta "Generar todo" y reinicia el editor. |
 | "Scene ... couldn't be loaded because it has not been added to the build settings" al reiniciar | Ejecuta "Generar todo" (agrega la escena a Build Settings). |
 | No aparece el diálogo de primera ejecución | Usa el menú **Factory Safety → Generar todo**. |
-| Errores de compilación en la consola al abrir | Espera a que terminen de resolverse los paquetes. Si persisten, comprueba que el editor sea 6000.0.x y que `Packages/manifest.json` no se haya modificado. Usa **Window → Package Manager** para revisar paquetes con error. |
+| Errores de compilación en la consola al abrir | Espera a que terminen de resolverse los paquetes. Si persisten, comprueba que el editor sea exactamente 6000.1.0f1 y que `Packages/manifest.json` no se haya modificado. Usa **Window → Package Manager** para revisar paquetes con error. |
 | Paquetes no se descargan | La primera apertura requiere internet (o una caché de paquetes ya poblada). |
 | "No se pudo iniciar OpenXR" al elegir VR | Conecta el visor, inicia su software y configúralo como runtime OpenXR activo. Si no hay visor, usa Escritorio. |
 | "OpenXR no está configurado" | Ejecuta "Generar todo" o activa OpenXR en Project Settings → XR Plug-in Management → pestaña Windows. |

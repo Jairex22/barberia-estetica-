@@ -26,6 +26,7 @@ namespace FactoryVisitorSafety
             Report = new SessionReport
             {
                 aviso = UIText.Disclaimer,
+                versionUnity = Application.unityVersion,
                 idSesion = DateTime.Now.ToString("yyyyMMdd-HHmmss") + "-" + UnityEngine.Random.Range(1000, 9999),
                 modoVisita = EnumText.ModeName(mode),
                 plataforma = EnumText.PlatformName(platform),

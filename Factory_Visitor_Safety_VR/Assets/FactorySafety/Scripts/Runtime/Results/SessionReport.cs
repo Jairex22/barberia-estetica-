@@ -42,6 +42,7 @@ namespace FactoryVisitorSafety
     {
         public string aplicacion = "Factory Visitor Safety VR";
         public string versionAplicacion = "1.0.0";
+        public string versionUnity;
         public string aviso;
         public string idSesion;
         public string modoVisita;
