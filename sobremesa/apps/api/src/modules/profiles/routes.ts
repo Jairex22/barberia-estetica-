@@ -39,6 +39,14 @@ export async function profileRoutes(app: FastifyInstance) {
     await svc.reorderPhotos(app.db, u.id, ids);
     return { ok: true };
   });
+  /** Navegación privada (Premium): solo te ven las personas a las que diste like. */
+  app.post('/me/incognito', async (req) => {
+    const u = requireUser(req);
+    const { enabled } = parse(z.object({ enabled: z.boolean() }), req.body);
+    if (enabled && u.plan !== 'premium') throw errors.forbidden('La navegación privada es parte de Premium');
+    await svc.setIncognito(app.db, u.id, enabled);
+    return { ok: true, incognito: enabled };
+  });
   app.get('/:id', async (req) => {
     const u = requireUser(req);
     const { id } = parse(z.object({ id: z.uuid() }), req.params);

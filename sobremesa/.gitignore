@@ -18,3 +18,4 @@ apps/web/playwright-report/
 apps/mobile/android/
 apps/mobile/ios/
 *.zip
+packages/shared/dist/

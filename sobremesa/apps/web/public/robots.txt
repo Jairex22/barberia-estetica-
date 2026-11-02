@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /$
+Allow: /legal/
+Allow: /premium$
+Disallow: /descubrir
+Disallow: /conexiones
+Disallow: /mensajes
+Disallow: /perfil
+Disallow: /admin
+Disallow: /api/
+Disallow: /ayuda
+Disallow: /verificacion

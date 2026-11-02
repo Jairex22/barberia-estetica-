@@ -41,7 +41,7 @@ export async function buildApp(opts: { databaseUrl?: string; logger?: boolean; j
 
   await app.register(cookie, { secret: config.COOKIE_SECRET });
   await app.register(cors, { origin: [config.APP_ORIGIN], credentials: true });
-  await app.register(rateLimit, { global: true, max: 300, timeWindow: '1 minute', allowList: config.NODE_ENV === 'test' ? ['127.0.0.1'] : [] });
+  await app.register(rateLimit, { global: true, max: 300, timeWindow: '1 minute', allowList: [...(config.NODE_ENV === 'test' ? ['127.0.0.1'] : []), ...config.RATE_LIMIT_ALLOWLIST.split(',').map((s) => s.trim()).filter(Boolean)] });
   await app.register(multipart, { limits: { fileSize: 8 * 1024 * 1024, files: 1 } });
   await app.register(websocket);
   await app.register(contextPlugin);
@@ -62,6 +62,10 @@ export async function buildApp(opts: { databaseUrl?: string; logger?: boolean; j
     return { ok: true, env: config.NODE_ENV, demoMode: config.DEMO_MODE, time: new Date().toISOString() };
   });
 
+  if (config.DEV_MAILBOX && config.NODE_ENV !== 'production') {
+    const { outbox } = await import('./services/email.js');
+    app.get('/dev/outbox', async (req) => { const to = (req.query as any)?.to as string | undefined; return { emails: outbox.filter((m) => !to || m.to === to).slice(-20) }; });
+  }
   await app.register(authRoutes, { prefix: '/auth' });
   await app.register(accountRoutes, { prefix: '/account' });
   await app.register(profileRoutes, { prefix: '/profile' });

@@ -13,9 +13,13 @@ const schema = z.object({
   COOKIE_SECURE: bool.default(false),
   SESSION_TTL_DAYS: z.coerce.number().default(30),
   TRUST_PROXY: bool.default(false),
+  /** IPs exentas de límite de tasa (solo desarrollo/pruebas E2E), separadas por coma. */
+  RATE_LIMIT_ALLOWLIST: z.string().default(''),
   /** Política para combinaciones mixtas de género (ver packages/shared rules/initiation.ts). */
   INITIATION_POLICY_MIXED: z.enum(['either', 'non_man_first']).default('either'),
   DEMO_MODE: bool.default(false),
+  /** Buzón de desarrollo: expone los correos enviados por el proveedor 'console' en GET /dev/outbox. Nunca en producción. */
+  DEV_MAILBOX: bool.default(false),
 
   EMAIL_PROVIDER: z.enum(['console', 'resend', 'smtp']).default('console'),
   EMAIL_FROM: z.string().default('Sobremesa <no-reply@localhost>'),

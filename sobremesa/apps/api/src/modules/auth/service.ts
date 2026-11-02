@@ -20,7 +20,7 @@ export async function register(db: Db, input: RegisterInput, ip?: string | null)
   const passwordHash = await hashPassword(input.password);
   const [user] = await db.insert(users).values({
     email: input.email, passwordHash, birthdate: input.birthdate, locale: input.locale, marketingOptIn: input.marketingOptIn,
-    isDemo: config.DEMO_MODE,
+    isDemo: config.DEMO_MODE, lastActiveAt: new Date().toISOString(),
   }).returning();
   await db.insert(profiles).values({ userId: user!.id, displayName: input.displayName, gender: input.gender, interestedIn: input.interestedIn });
   await db.insert(notificationPrefs).values({ userId: user!.id, unsubscribeToken: randomToken(24), emailMarketing: input.marketingOptIn });
@@ -66,6 +66,7 @@ export async function login(db: Db, email: string, password: string, device?: st
     throw errors.unauthorized('Correo o contraseña incorrectos.');
   }
   const session = await createSession(db, u.id, device, ip);
+  await db.update(users).set({ lastActiveAt: new Date().toISOString() }).where(eq(users.id, u.id));
   await audit(db, { actorId: u.id, action: 'auth.login', ip, metadata: { device } });
   return { user: u, ...session };
 }

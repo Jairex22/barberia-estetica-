@@ -4,20 +4,23 @@
   "version": "0.1.0",
   "description": "Sobremesa — app de citas para México (web + iOS/Android). Monorepo pnpm.",
   "packageManager": "pnpm@10.28.0",
-  "engines": { "node": ">=22.12" },
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
-    "dev": "pnpm --parallel --filter ./apps/api --filter ./apps/web dev",
+    "dev": "pnpm build:shared && pnpm --parallel --filter ./apps/api --filter ./apps/web dev",
     "dev:api": "pnpm --filter @sobremesa/api dev",
     "dev:web": "pnpm --filter @sobremesa/web dev",
     "dev:mobile": "pnpm --filter @sobremesa/mobile start",
     "build": "pnpm -r --filter ./packages/shared --filter ./apps/api --filter ./apps/web build",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm --filter @sobremesa/shared test && pnpm --filter @sobremesa/api test",
+    "test": "pnpm build:shared && pnpm --filter @sobremesa/shared test && pnpm --filter @sobremesa/api test",
     "test:e2e": "pnpm --filter @sobremesa/web test:e2e",
     "db:migrate": "pnpm --filter @sobremesa/api db:migrate",
     "db:seed:demo": "pnpm --filter @sobremesa/api db:seed:demo",
     "load:test": "pnpm --filter @sobremesa/api load:test",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "build:shared": "pnpm --filter @sobremesa/shared build"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

@@ -15,7 +15,7 @@ declare module 'fastify' {
   interface FastifyRequest { user: SessionUser | null; sessionId: string | null; rawBody?: Buffer }
 }
 
-export async function loadSessionUser(db: Db, token: string): Promise<{ user: SessionUser; sessionId: string } | null> {
+export async function loadSessionUser(db: Db, token: string, by: 'token' | 'sessionId' = 'token'): Promise<{ user: SessionUser; sessionId: string } | null> {
   const tokenHash = sha256(token);
   const now = new Date().toISOString();
   const rows = await db
@@ -23,7 +23,7 @@ export async function loadSessionUser(db: Db, token: string): Promise<{ user: Se
     .from(sessions)
     .innerJoin(users, eq(users.id, sessions.userId))
     .leftJoin(profiles, eq(profiles.userId, users.id))
-    .where(and(eq(sessions.tokenHash, tokenHash), isNull(sessions.revokedAt), gt(sessions.expiresAt, now)))
+    .where(and(by === 'token' ? eq(sessions.tokenHash, tokenHash) : eq(sessions.id, token), isNull(sessions.revokedAt), gt(sessions.expiresAt, now)))
     .limit(1);
   const row = rows[0];
   if (!row) return null;

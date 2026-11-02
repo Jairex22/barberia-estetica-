@@ -7,6 +7,8 @@ import * as svc from './service.js';
 import { RealtimeBus } from '../../services/realtime.js';
 import { randomToken } from '../../services/crypto.js';
 import { AppError } from '../../services/errors.js';
+import { verifyWsTicket } from '../auth/routes.js';
+import { config } from '../../config.js';
 
 export async function chatRoutes(app: FastifyInstance) {
   const bus = new RealtimeBus(app.sql, randomToken(6));
@@ -41,9 +43,15 @@ export async function chatRoutes(app: FastifyInstance) {
 
   // WebSocket: autenticación por cookie de sesión o ?token=; mismo servicio de envío que REST.
   app.get('/ws', { websocket: true }, async (socket, req) => {
+    // Protección CSWSH: si el navegador manda Origin, debe ser el de la app.
+    const origin = req.headers.origin;
+    if (origin && origin !== config.APP_ORIGIN) { socket.close(4003, 'origin'); return; }
     let token: string | undefined = (req.query as any)?.token;
-    if (!token) { const raw = req.cookies[SESSION_COOKIE]; if (raw) { const un = req.unsignCookie(raw); if (un.valid && un.value) token = un.value; } }
-    const loaded = token ? await loadSessionUser(app.db, token) : null;
+    const ticket: string | undefined = (req.query as any)?.ticket;
+    if (!token && !ticket) { const raw = req.cookies[SESSION_COOKIE]; if (raw) { const un = req.unsignCookie(raw); if (un.valid && un.value) token = un.value; } }
+    let loaded = null;
+    if (ticket) { const sid = verifyWsTicket(ticket); loaded = sid ? await loadSessionUser(app.db, sid, 'sessionId') : null; }
+    else if (token) loaded = await loadSessionUser(app.db, token);
     if (!loaded || loaded.user.status === 'suspended') { socket.send(JSON.stringify({ type: 'error', code: 'unauthorized', message: 'Sesión inválida' })); socket.close(4001, 'unauthorized'); return; }
     const user = loaded.user;
     const unsubscribe = bus.subscribe(user.id, socket);

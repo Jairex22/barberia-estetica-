@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Sobremesa",
+    "slug": "sobremesa",
+    "version": "0.1.0",
+    "scheme": "sobremesa",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": { "backgroundColor": "#6b1f2b" },
+    "ios": {
+      "bundleIdentifier": "mx.sobremesa.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Para tomar la selfie de verificación y fotos de perfil.",
+        "NSPhotoLibraryUsageDescription": "Para elegir fotos de perfil. Eliminamos los metadatos de ubicación.",
+        "NSLocationWhenInUseUsageDescription": "Para mostrarte personas cerca. Guardamos solo una ubicación aproximada (~1 km)."
+      }
+    },
+    "android": {
+      "package": "mx.sobremesa.app",
+      "permissions": ["CAMERA", "ACCESS_COARSE_LOCATION"],
+      "blockedPermissions": ["ACCESS_FINE_LOCATION", "READ_MEDIA_IMAGES"]
+    },
+    "plugins": [
+      "expo-router", "expo-secure-store",
+      ["expo-location", { "locationWhenInUsePermission": "Para mostrarte personas cerca con ubicación aproximada.", "isAndroidBackgroundLocationEnabled": false }],
+      ["expo-image-picker", { "photosPermission": "Para elegir fotos de perfil.", "cameraPermission": "Para tomar fotos y la selfie de verificación." }]
+    ],
+    "extra": { "eas": { "projectId": "PENDIENTE_CREAR_CON_eas_init" } }
+  }
+}

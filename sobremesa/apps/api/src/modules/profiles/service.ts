@@ -94,3 +94,7 @@ export async function getPublicProfile(db: Db, viewerId: string, targetId: strin
     signals: me ? sharedSignals({ interests: me.interests, intent: me.intent ?? '', planTypes: me.planTypes }, { interests: row.p.interests, intent: row.p.intent ?? '', planTypes: row.p.planTypes }) : undefined,
   };
 }
+
+export async function setIncognito(db: Db, userId: string, enabled: boolean) {
+  await db.update(profiles).set({ incognito: enabled, updatedAt: new Date().toISOString() }).where(eq(profiles.userId, userId));
+}

@@ -3,6 +3,10 @@ import { registerSchema, loginSchema, verifyEmailSchema, forgotPasswordSchema, r
 import { parse } from '../../plugins/validation.js';
 import * as svc from './service.js';
 import { SESSION_COOKIE, cookieOptions, requireUser } from '../../plugins/context.js';
+import { z } from 'zod';
+import { waitlist } from '../../db/schema.js';
+import { hmacSign, safeEqual } from '../../services/crypto.js';
+import { config } from '../../config.js';
 
 export async function authRoutes(app: FastifyInstance) {
   const strict = { config: { rateLimit: { max: 10, timeWindow: '15 minutes' } } };
@@ -61,4 +65,30 @@ export async function authRoutes(app: FastifyInstance) {
   app.get('/me', async (req) => {
     return { user: req.user };
   });
+
+  /** Ticket de corta duración (60 s) para abrir el WebSocket desde el navegador sin exponer la cookie httpOnly. */
+  app.post('/ws-ticket', async (req) => {
+    requireUser(req);
+    return { ticket: makeWsTicket(req.sessionId!), expiresIn: 60 };
+  });
+
+  app.post('/waitlist', { config: { rateLimit: { max: 5, timeWindow: '1 hour' } } }, async (req) => {
+    const { email, city, gender, source } = parse(z.object({ email: z.email().transform((e) => e.trim().toLowerCase()), city: z.string().trim().max(80).optional(), gender: z.string().max(20).optional(), source: z.string().max(40).optional() }), req.body);
+    await app.db.insert(waitlist).values({ email, city: city ?? null, gender: gender ?? null, source: source ?? null }).onConflictDoNothing();
+    return { ok: true };
+  });
+}
+
+export function makeWsTicket(sessionId: string): string {
+  const exp = Math.floor(Date.now() / 1000) + 60;
+  const payload = `${sessionId}.${exp}`;
+  return `${payload}.${hmacSign(config.COOKIE_SECRET, payload)}`;
+}
+export function verifyWsTicket(ticket: string): string | null {
+  const parts = ticket.split('.');
+  if (parts.length !== 3) return null;
+  const [sessionId, expStr, sig] = parts as [string, string, string];
+  if (Number(expStr) < Math.floor(Date.now() / 1000)) return null;
+  if (!safeEqual(hmacSign(config.COOKIE_SECRET, `${sessionId}.${expStr}`), sig)) return null;
+  return sessionId;
 }
