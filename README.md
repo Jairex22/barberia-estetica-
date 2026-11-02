@@ -1,3 +1,12 @@
+# Repositorio
+
+Este repositorio contiene dos proyectos independientes:
+
+- **`sobremesa/`** — Sobremesa, app de citas para México (web + iOS/Android + API). **Empieza por [`sobremesa/README.md`](./sobremesa/README.md)** y [`sobremesa/ESTADO.md`](./sobremesa/ESTADO.md).
+- Raíz (`server/`, `web/`) — plantilla anterior "ClickFlow Digital" para sitios de negocios locales (documentación original a continuación).
+
+---
+
 # ClickFlow Digital — Plantilla de sitio profesional para negocios locales
 
 Sitio web profesional, reutilizable y personalizable para vender a negocios

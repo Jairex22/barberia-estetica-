@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-02T02:21:58.024Z",
+  "api": "http://127.0.0.1:4001",
+  "users": 200,
+  "durationS": 60,
+  "requests": 17210,
+  "requestsPerSecond": 286.8,
+  "errorRate": "0.00%",
+  "wsSent": 3362,
+  "wsAcked": 3362,
+  "wsErrors": 0,
+  "apiRssMb": {
+    "min": 209,
+    "max": 287
+  },
+  "apiCpuPct": {
+    "avg": 105,
+    "max": 123
+  },
+  "rows": [
+    {
+      "name": "GET /discover",
+      "n": 3462,
+      "p50": 206,
+      "p95": 504,
+      "p99": 606,
+      "max": 702,
+      "errors": 0,
+      "errorRate": "0.00%",
+      "statuses": ""
+    },
+    {
+      "name": "POST /discover/swipe",
+      "n": 3462,
+      "p50": 54,
+      "p95": 134,
+      "p99": 186,
+      "max": 276,
+      "errors": 0,
+      "errorRate": "0.00%",
+      "statuses": ""
+    },
+    {
+      "name": "GET /conversations",
+      "n": 3462,
+      "p50": 82,
+      "p95": 209,
+      "p99": 244,
+      "max": 391,
+      "errors": 0,
+      "errorRate": "0.00%",
+      "statuses": ""
+    },
+    {
+      "name": "GET /conversations/:id/messages",
+      "n": 3462,
+      "p50": 46,
+      "p95": 111,
+      "p99": 141,
+      "max": 212,
+      "errors": 0,
+      "errorRate": "0.00%",
+      "statuses": ""
+    },
+    {
+      "name": "ws.message.ack",
+      "n": 3362,
+      "p50": 108,
+      "p95": 259,
+      "p99": 319,
+      "max": 488,
+      "errors": 0,
+      "errorRate": "0.00%",
+      "statuses": ""
+    }
+  ]
+}

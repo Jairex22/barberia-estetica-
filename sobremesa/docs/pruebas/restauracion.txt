@@ -1,0 +1,24 @@
+Prueba de restauración de respaldo — 2026-11-02T02:28:51+00:00
+1) pg_dump -Fc citas
+   tamaño: 191804 bytes
+2) crear BD citas_restore y pg_restore
+NOTICE:  database "citas_restore" does not exist, skipping
+   pg_restore OK
+3) comparación de filas por tabla (origen vs restaurada)
+   users                      72       72 igual
+   profiles                   72       72 igual
+   photos                     52       52 igual
+   swipes                     44       44 igual
+   matches                    12       12 igual
+   conversations              12       12 igual
+   messages                   22       22 igual
+   subscriptions               0        0 igual
+   billing_events              0        0 igual
+   payment_records             0        0 igual
+   knowledge_articles         17       17 igual
+   audit_log                 431      431 igual
+4) arranque del API contra la BD restaurada
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+   GET /health → {"ok":true,"env":"development","demoMode":false,"time":"2026-11-02T02:28:56.912Z"}
+5) limpieza: DROP DATABASE citas_restore
+Resultado: restauración verificada.

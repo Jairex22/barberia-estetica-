@@ -1,0 +1,3 @@
+import { Stack } from 'expo-router';
+import { colors } from '@/lib/theme';
+export default function L() { return <Stack screenOptions={{ headerStyle: { backgroundColor: colors.cream }, headerShadowVisible: false, headerTintColor: colors.wine, headerTitleStyle: { color: colors.ink }, contentStyle: { backgroundColor: colors.cream } }}><Stack.Screen name="index" options={{ title: 'Perfil' }} /><Stack.Screen name="editar" options={{ title: 'Editar perfil' }} /><Stack.Screen name="premium" options={{ title: 'Premium' }} /><Stack.Screen name="ayuda" options={{ title: 'Ayuda' }} /><Stack.Screen name="cuenta" options={{ title: 'Cuenta' }} /></Stack>; }
