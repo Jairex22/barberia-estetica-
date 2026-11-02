@@ -1,0 +1,48 @@
+{
+  "name": "@sobremesa/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:seed:demo": "tsx scripts/seed-demo.ts",
+    "db:seed:kb": "tsx scripts/seed-knowledge.ts",
+    "jobs:run": "tsx scripts/run-job.ts",
+    "test": "vitest run --no-file-parallelism",
+    "load:test": "tsx scripts/load-test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
+    "@aws-sdk/client-s3": "^3.1161.0",
+    "@fastify/cookie": "^11.1.5",
+    "@fastify/cors": "^11.3.1",
+    "@fastify/multipart": "^10.1.6",
+    "@fastify/rate-limit": "^11.2.1",
+    "@fastify/websocket": "^11.3.6",
+    "@node-rs/argon2": "^2.2.2",
+    "@sobremesa/shared": "workspace:*",
+    "drizzle-orm": "^0.45.4",
+    "fastify": "^5.12.7",
+    "fastify-plugin": "^5.1.0",
+    "mercadopago": "^3.6.1",
+    "postgres": "^3.4.7",
+    "sharp": "^0.35.5",
+    "stripe": "^23.1.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5",
+    "ws": "^8.22.1"
+  }
+}
